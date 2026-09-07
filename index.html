@@ -6,7 +6,7 @@
     <title>Připojování k serveru...</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
             background-color: #121212;
             color: #ffffff;
             display: flex;
@@ -33,7 +33,6 @@
     </style>
 </head>
 <body>
-
     <div id="status">
         <div class="loader"></div>
         <h2>Ověřuji stav serveru...</h2>
@@ -41,42 +40,25 @@
     </div>
 
     <script>
-        // Doplňuje Python skript při startu PC
-        const TARGET_URL = "https://tvuj-aktualni-tunel.trycloudflare.com"; 
-        const TIMEOUT_MS = 3000; // Časový limit pro odpověď (3 sekundy)
+        const TARGET_URL = "https://aurora-tip-sections-devoted.trycloudflare.com";
+        const TIMEOUT_MS = 3000;
 
         async function checkServer() {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
             try {
-                // Pokus o rychlé připojení k tunelu
                 await fetch(TARGET_URL, {
                     method: 'HEAD',
                     mode: 'no-cors',
                     signal: controller.signal,
                     cache: 'no-cache'
                 });
-                
                 clearTimeout(timeoutId);
-                // Server odpovídá -> přesměrování
                 window.location.href = TARGET_URL;
-
             } catch (error) {
                 clearTimeout(timeoutId);
-                // Server neodpovídá / PC je vypnuté
-                
-                // Varianta A: Přesměrování na samostatnou stranu offline.html
                 window.location.href = "offline.html";
-
-                /* 
-                // Varianta B: Zobrazení hlášky přímo na této stránce
-                document.getElementById('status').innerHTML = `
-                    <h1 style="color: #ff4757;">Server je offline 🔴</h1>
-                    <p>Počítač nebo Cloudflare tunel momentálně neběží.</p>
-                    <p>Zkus to prosím později!</p>
-                `;
-                */
             }
         }
 
