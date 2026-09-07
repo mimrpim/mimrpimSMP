@@ -3,38 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Zákaz kešování v prohlížeči -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Server je offline</title>
+    <!-- Okamžité HTML přesměrování -->
+    <meta http-equiv="refresh" content="0; url=https://increased-slowly-executed-connect.trycloudflare.com">
+    <title>Přesměrovávání na server...</title>
     <style>
         body {
-            background-color: #121212;
-            color: white;
             font-family: sans-serif;
+            background-color: #121212;
+            color: #ffffff;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
             text-align: center;
         }
-        .card {
-            background: #1e1e1e;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            border: 1px solid #333;
+        .loader {
+            border: 4px solid #333;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
         }
-        h1 { color: #ff4757; margin-bottom: 10px; }
-        p { color: #aaa; }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
+    <script>
+        // Okamžité JS přesměrování bez ukládání historie načítání
+        window.location.replace("https://increased-slowly-executed-connect.trycloudflare.com");
+    </script>
 </head>
 <body>
-    <div class="card">
-        <h1>🔴 Server je offline</h1>
-        <p>Moje PC nebo služba momentálně neběží.</p>
-        <p><small>Zkus stránku obnovit později.</small></p>
-    </div>
+    <div class="loader"></div>
+    <h2>Přesměrovávám na server...</h2>
+    <p>Pokud přesměrování nefunguje, <a href="https://increased-slowly-executed-connect.trycloudflare.com" style="color: #3498db;">klikni zde</a>.</p>
 </body>
 </html>
